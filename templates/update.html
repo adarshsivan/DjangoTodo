@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Update | ToDos{% endblock title %}
+{% block content %}
+{% if success %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success: </strong> Task has been added to list.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<div class="container">
+    <h1 class="text-center mt-5 alert alert-primary">
+        Update your task
+    </h1>
+    <form method="post" action="/dataupdate?id={{ID}}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="taskname" class="form-label">Task Name</label>
+            <input type="text" class="form-control" id="taskname" name="taskName" value={{taskTitle}}>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="desc" rows="3" name="description">{{taskDesc}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+{% endblock content %}
+</body>
+
+</html>
